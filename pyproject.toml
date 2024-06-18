@@ -2,7 +2,11 @@
 name = "classification-of-vegetable-and-fruit-quality"
 version = "0.1.0"
 description = "Group project for computer vision PJAIT course"
-authors = ["Szymon Szczurowski"]
+authors = [
+    "Szymon Szczurowski <szczurowskiszymo@gmail.com>",
+    "Szymon Sztreja <szymonsztreja@gmail.com>",
+    "Mateusz Szulist <s24718@pjwstk.edu.pl>"
+]
 license = "MIT"
 readme = "README.md"
 
