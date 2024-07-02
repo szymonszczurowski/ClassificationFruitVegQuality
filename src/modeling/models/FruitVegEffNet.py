@@ -15,7 +15,9 @@ class FruitVegEffNet(pl.LightningModule):
         """Initialize the FruitVegEffNet model."""
         super().__init__()
 
-        efficientnetB7Model = models.efficientnet_b7(pretrained=True)
+        efficientnetB7Model = models.efficientnet_b7(
+            weights="EfficientNet_B7_Weights.DEFAULT"
+        )
 
         self.backbone = efficientnetB7Model.features
         self.pooling = efficientnetB7Model.avgpool
