@@ -1,3 +1,4 @@
+import os
 import sys
 from datetime import datetime
 
@@ -6,16 +7,19 @@ import torch
 from pytorch_lightning.callbacks import ModelCheckpoint
 from pytorch_lightning.loggers import TensorBoardLogger
 
-import src.data_module as md
-import src.modeling.models.FruitVegEffNet as model
+from src.data_module import FruitVegDatamodule
+from src.modeling.models.FruitVegEffNet import FruitVegEffNet
 
+# This code is needed to run the script as for now the imports are not working otherwise
 # sys.path.insert(
-#     0, "C:\\Users\\szymo\\PROGRAMMING\\classification-of-vegetable-and-fruit-quality"
+#     0, os.getcwd()
 # )
 # from src.modeling.models.FruitVegEffNet import FruitVegEffNet
 # from src.data_module import FruitVegDatamodule
+
+
 if __name__ == "__main__":
-    dm = md.FruitVegDatamodule()
+    dm = FruitVegDatamodule()
     dm.setup()
     num_classes = len(dm.train_dataset.dataset.classes)
     print(num_classes)
@@ -29,9 +33,7 @@ if __name__ == "__main__":
         mode="min",  # Mode to monitor (minimize the monitored metric)
         save_weights_only=True,  # If True, only the model's weights will be saved
     )
-    # trainer = pl.Trainer(max_epochs=30, accelerator = "gpu", callbacks=[checkpoint_callback])
-
-    model = model.FruitVegEffNet(num_classes=num_classes)
+    model = FruitVegEffNet(num_classes=num_classes)
     logger_file_name = (
         model.__class__.__name__ + "_logs" + datetime.now().strftime("%Y%m%d-%H%M%S")
     )

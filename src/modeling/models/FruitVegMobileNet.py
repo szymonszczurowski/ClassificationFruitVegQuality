@@ -18,7 +18,7 @@ class FruitVegMobNet(pl.LightningModule):
         mobilenetV2Model = models.mobilenet_v2(pretrained=True)
 
         self.backbone = mobilenetV2Model.features
-        self.pooling = mobilenetV2Model.avgpool
+        self.pooling = nn.AdaptiveAvgPool2d((1, 1))
         self.dropout = nn.Dropout(inplace=True)
         self.fc1 = nn.LazyLinear(num_classes)
         self.loss_function = nn.CrossEntropyLoss()
