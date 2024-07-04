@@ -25,7 +25,8 @@ class FruitVegDatamodule(pl.LightningDataModule):
         )
 
         dataset = ImageFolder(
-            root="data/raw/Fruit And Vegetable Diseases Dataset", transform=transform
+            root="data/processed/Fruit And Vegetable Diseases Dataset",
+            transform=transform,
         )
 
         seed = Generator().manual_seed(42)
