@@ -6,14 +6,14 @@ from pytorch_lightning import Trainer
 from models.FruitVegMobileNet import FruitVegMobNet
 from src.data_module import FruitVegDatamodule
 
+
 # This code is needed to run the script as for now the imports are not working otherwise
 # sys.path.insert(
 #     0, os.getcwd()
 # )
 # from models.FruitVegMobileNet import FruitVegMobNet
 # from src.data_module import FruitVegDatamodule
-
-
+# TODO  add the test
 def test_model(model_path: str) -> None:
     """
     Test the trained model on the test dataset.

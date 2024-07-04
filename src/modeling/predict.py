@@ -122,7 +122,7 @@ def visualize_predictions(
 
 
 if __name__ == "__main__":
-    model_path = "models/fruit_veg_mobilenet/epoch=24-val_loss=0.23.ckpt"
+    model_path = "models/fruit_veg_mobilenet/epoch=24-val_loss=0.33.ckpt"
     dm = FruitVegDatamodule()
     test_loader = load_data_module(dm)
     class_names = test_loader.dataset.dataset.classes
