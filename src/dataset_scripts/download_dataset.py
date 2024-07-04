@@ -1,45 +1,59 @@
-"""
-Zaimplementować skrypt pobierający zbiór danych z kaggle'a. Skrypt powinien być w stanie pobrać zbiór danych z kaggle'a, rozpakować go i zapisać w data/raw.
-
-To tylko przykładowy skrypt, nadal musimy go zaimplementować poprawnie.
-"""
 import os
-import shutil
 import zipfile
 
 from kaggle.api.kaggle_api_extended import KaggleApi
 
-DATA_DIR = "data/raw"
 
-
-def download_data(dataset_name: str, output_dir: str = DATA_DIR) -> None:
+def download_dataset(
+    kaggle_creds_path: str, dataset_name: str, download_path: str
+) -> None:
     """
-    Download and extract a dataset from Kaggle.
+    Download a dataset from Kaggle using the Kaggle API.
 
     Args:
-    ----
-        dataset_name: The Kaggle dataset's name in 'owner/dataset-name' format.
-        output_dir: The directory to download and extract the dataset to.
+        kaggle_creds_path (str): The path to the Kaggle credentials file.
+        dataset_name (str): The name of the dataset on Kaggle.
+        download_path (str): The path where the dataset should be downloaded.
+
+    Returns
+    -------
+        None
 
     """
     api = KaggleApi()
     api.authenticate()
+    os.environ["KAGGLE_CONFIG_DIR"] = os.path.abspath(
+        os.path.dirname(kaggle_creds_path)
+    )
 
-    # Create the output directory if it doesn't exist
-    os.makedirs(output_dir, exist_ok=True)
-    api.dataset_download_files(dataset_name, path=output_dir, unzip=False)
+    api.dataset_download_files(dataset_name, path=download_path, unzip=False)
 
-    # Extract the downloaded zip file
-    with zipfile.ZipFile(
-        os.path.join(output_dir, f"{dataset_name.split('/')[1]}.zip"), "r"
-    ) as zip_ref:
-        zip_ref.extractall(output_dir)
 
-    # Remove the downloaded zip file
-    os.remove(os.path.join(output_dir, f"{dataset_name.split('/')[1]}.zip"))
+def extract_dataset(zip_path: str, extract_path: str) -> None:
+    """
+    Extract a dataset from a zip file to the specified extract path.
+
+    Args:
+        zip_path (str): The path to the zip file.
+        extract_path (str): The path where the dataset will be extracted.
+
+    Returns
+    -------
+        None
+
+    """
+    with zipfile.ZipFile(zip_path, "r") as zip_ref:
+        zip_ref.extractall(extract_path)
+    os.remove(zip_path)
 
 
 if __name__ == "__main__":
+    kaggle_creds_path = "kaggle.json"
+
     dataset_name = "muhammad0subhan/fruit-and-vegetable-disease-healthy-vs-rotten"
-    output_dir = "data/raw"
-    download_data(dataset_name, output_dir)
+    download_path = "data/raw"
+    extract_path = download_path
+    zip_path = "data/raw/fruit-and-vegetable-disease-healthy-vs-rotten.zip"
+
+    download_dataset(kaggle_creds_path, dataset_name, download_path)
+    extract_dataset(zip_path, extract_path)
