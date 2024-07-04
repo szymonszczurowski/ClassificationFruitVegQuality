@@ -4,11 +4,10 @@ import sys
 import matplotlib.pyplot as plt
 import numpy as np
 import torch
-from pytorch_lightning import LightningDataModule, LightningModule
-from torch.utils.data import DataLoader
-
 from models.FruitVegMobileNet import FruitVegMobNet
+from pytorch_lightning import LightningDataModule, LightningModule
 from src.data_module import FruitVegDatamodule
+from torch.utils.data import DataLoader
 
 # This code is needed to run the script as for now the imports are not working otherwise
 # sys.path.insert(0, os.getcwd())
