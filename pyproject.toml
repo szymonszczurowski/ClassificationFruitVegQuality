@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "ClassificationFruitVegQuality"
+name = "classificationfruitvegquality"
 version = "0.1.0"
 description = "Group project for computer vision PJAIT course"
 authors = [
