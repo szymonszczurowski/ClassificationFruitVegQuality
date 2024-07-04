@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "classification-of-vegetable-and-fruit-quality"
+name = "ClassificationFruitVegQuality"
 version = "0.1.0"
 description = "Group project for computer vision PJAIT course"
 authors = [
@@ -20,6 +20,7 @@ torchvision = "^0.18.1"
 tensorboard = "^2.17.0"
 matplotlib = "^3.9.1"
 albumentations = "^1.4.10"
+jupyter = "^1.0.0"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.7.1"
