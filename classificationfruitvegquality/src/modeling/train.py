@@ -6,7 +6,6 @@ import pytorch_lightning as pl
 import torch
 from pytorch_lightning.callbacks import ModelCheckpoint
 from pytorch_lightning.loggers import TensorBoardLogger
-
 from src.data_module import FruitVegDatamodule
 from src.modeling.models.FruitVegEffNet import FruitVegEffNet
 

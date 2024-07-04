@@ -1,9 +1,8 @@
 import os
 import sys
 
-from pytorch_lightning import Trainer
-
 from models.FruitVegMobileNet import FruitVegMobNet
+from pytorch_lightning import Trainer
 from src.data_module import FruitVegDatamodule
 
 
