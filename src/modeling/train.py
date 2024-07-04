@@ -26,12 +26,12 @@ if __name__ == "__main__":
     print(torch.cuda.is_available())
 
     checkpoint_callback = ModelCheckpoint(
-        dirpath="models/fruit_veg_effnet",  # Directory to save the models
-        filename="{epoch}-{val_loss:.2f}",  # Filename format
-        save_top_k=1,  # Save the top k models according to the monitored metric
-        monitor="val_loss",  # Metric to monitor for saving the best model
-        mode="min",  # Mode to monitor (minimize the monitored metric)
-        save_weights_only=True,  # If True, only the model's weights will be saved
+        dirpath="models/fruit_veg_effnet",
+        filename="{epoch}-{val_loss:.2f}",
+        save_top_k=1,
+        monitor="val_loss",
+        mode="min",
+        save_weights_only=True,
     )
     model = FruitVegEffNet(num_classes=num_classes)
     logger_file_name = (
