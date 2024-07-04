@@ -33,7 +33,6 @@ if __name__ == "__main__":
         mode="min",  # Mode to monitor (minimize the monitored metric)
         save_weights_only=True,  # If True, only the model's weights will be saved
     )
-
     model = FruitVegEffNet(num_classes=num_classes)
     logger_file_name = (
         model.__class__.__name__ + "_logs" + datetime.now().strftime("%Y%m%d-%H%M%S")
